@@ -1,0 +1,51 @@
+
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">用户列表</div>
+
+	<!-- Table -->
+	<table class="table">
+		<tr>
+			<td>昵称</td>
+			<td>性别</td>
+			<td>真实姓名</td>
+			<td>联系方式</td>
+			<td>编辑</td>
+		</tr>
+		{{range .hackers}}
+		<tr>
+			<td>{{.Nick}}</td>
+			<td>{{.Gender}}</td>
+			<td>{{.RealName}}</td>
+			<td>
+				{{range $key,$value := .Contact}}
+				<div>{{$key}}:{{$value}}</div>
+				{{end}}
+			</td>
+			<td>
+				<a href="#">修改</a>
+				<a href="#">删除</a>
+			</td>
+		</tr>
+		{{end}}
+	</table>
+</div>
+{{if gt .paginator.PageNums 1}}
+<ul class="pagination pagination-sm" style="float:right">
+	<li>
+		<a {{if .paginator.HasPrev}}href="{{.paginator.PageLinkFirst}}"{{else}}class="disabled"{{end}}>
+			<span class="glyphicon glyphicon-step-backward"></span>
+		</a>
+	</li>
+	{{range $index, $page := .paginator.Pages}}
+	<li{{if $.paginator.IsActive .}} class="active"{{end}}>
+		<a href="{{$.paginator.PageLink $page}}">{{$page}}</a>
+	</li>
+	{{end}}
+	<li>
+		<a {{if .paginator.HasNext}}href="{{.paginator.PageLinkLast}}"{{else}}class="disabled"{{end}}>
+			<span class="glyphicon glyphicon-step-forward"></span>
+		</a>
+	</li>
+</ul>
+{{end}}

@@ -1,0 +1,121 @@
+.top-bar {
+	background-color: #0F5B9C;	
+	border-color: #0D4285;
+	box-shadow: 0 1px 0 rgba(255,255,255,.1)
+}
+.top-bar nav {
+	background-color: #0F5B9C;	
+	border-color: #0D4285 !important;	
+}
+.top-bar .navbar-nav>li>a {	
+	color:#BCCBF1;
+}
+.top-bar .navbar-nav>li.active>a {
+	background-color: #002E75;	
+}
+.top-bar .navbar-nav>li.active>a:hover {
+	background-color: #002E75;	
+}
+.top-bar .navbar-nav>li.dropdown.open>a {
+	background-color: #0F5B9C;
+}
+.top-bar .navbar-nav>li.dropdown.open>a:hover {
+	background-color: #0F5B9C;
+}
+.top-bar .navbar-nav>li.active.open.dropdown>a {
+	background-color: #002E75;
+}
+.top-bar .navbar-nav>li.active.open.dropdown>a:hover {
+	background-color: #002E75;
+}
+.top-bar .navbar-nav>li.open.dropdown>ul.dropdown-menu {
+	color: #BCCBF1;
+	border-color: #0D4285;
+	background-color: #0F5B9C;	
+}
+.top-bar .navbar-nav>li.open.dropdown>ul.dropdown-menu a {
+	color: #BCCBF1;
+	border-color: #0D4285;
+	background-color: #0F5B9C;	
+}
+.top-bar .navbar-brand {
+	color:#FFF;
+}
+.top-bar .navbar-toggle {
+	background-color: #0F5B9C;
+	border-color: #0D4285;
+	box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+.top-bar .navbar-toggle:hover {
+	background-color: #023764;
+	border-color: #0D4285;
+	box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+
+.sub-bar {
+	margin-top:50px;
+	background-color: #0F5B9C;
+	/*height: 340px;*/
+	padding-top:40px;
+	padding-bottom:40px;
+}
+.sub-bar h1 {
+	color:#fff;
+}
+.sub-bar p {
+	color:#999;
+}
+
+.body {
+	margin-top: 50px;
+}
+
+.left-bar .nav {
+	padding-left: 0;
+	padding-right: 0;
+}
+.left-bar .nav a {
+	color: #716B7A;
+	font-weight: 900;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.left-bar .well {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.left-bar-left {
+	position:fixed;
+	background-color: #FFF;
+	/*border-right: solid #000;*/
+}
+.glyphicon {
+	top: 0;
+}
+@media (min-width: 768px) {
+	.left-bar-left {
+		width: 176px;
+	}
+}
+
+@media (min-width: 992px) {
+	.left-bar-left {
+		width: 213px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.left-bar-left {
+		width: 263px;
+	}	
+}
+
+.panel-mod {
+	margin-bottom: 1px;
+	position: absolute;
+	width: 100%;
+}
+footer {
+	position: fixed;
+	bottom: 0;
+}

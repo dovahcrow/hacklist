@@ -1,0 +1,113 @@
+<script>
+	function submitform(formobj,id) {
+		var submitUrl = {{urlfor "AUserController.Mod" ":id" ""}} + id;
+		console.log($(formobj))
+		return false;
+		// var f = $("form[action='"+id+"']");
+		// if (/^\s*$/.test(f.find('input[name="title"]').val())) {
+		// alert("标题不能为空");
+		// return false;
+		// }
+		// if (/^\s*$/.test(f.find('textarea[name="text"]').val())) {
+		// alert("内容不能为空");
+		// return false;
+		// }
+		// var d = f.serialize();
+		// $.post("/uwants/threads/update/"+id, d, function (result) { location.reload()});
+	}
+</script>
+<div class="panel panel-default">
+	<div class="panel-heading">用户列表</div>
+
+	<!-- Table -->
+	<table class="table">
+		<tr>
+			<td>姓名</td>
+			<td>邮箱</td>
+			<td>权限</td>
+			<td>最后登陆时间</td>
+			<td>编辑</td>
+		</tr>
+		{{range .users}}
+		<tr>
+			<td>{{.Name}}</td>
+			<td>{{.Email}}</td>
+			<td>{{.Permission.String}}</td>
+			<td>{{date .LastLoginTime "Y-m-d H:i:s"}}</td>
+			<td>
+				<a data-toggle="modal" data-target="#mod_{{.Id.Hex}}">修改</a>
+				<a href="{{urlfor "AUserController.Del" ":id" .Id.Hex}}">删除</a>
+			</td>
+		</tr>
+		{{end}}
+	</table>
+</div>
+{{if gt .paginator.PageNums 1}}
+<ul class="pagination pagination-sm" style="float:right">
+	<li>
+		<a {{if .paginator.HasPrev}}href="{{.paginator.PageLinkFirst}}"{{else}}class="disabled"{{end}}>
+			<span class="glyphicon glyphicon-step-backward"></span>
+		</a>
+	</li>
+	{{range $index, $page := .paginator.Pages}}
+	<li{{if $.paginator.IsActive .}} class="active"{{end}}>
+		<a href="{{$.paginator.PageLink $page}}">{{$page}}</a>
+	</li>
+	{{end}}
+	<li>
+		<a {{if .paginator.HasNext}}href="{{.paginator.PageLinkLast}}"{{else}}class="disabled"{{end}}>
+			<span class="glyphicon glyphicon-step-forward"></span>
+		</a>
+	</li>
+</ul>
+{{end}}
+
+{{range .users}}
+<div class="modal fade" id="mod_{{.Id.Hex}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form id="mod_form_{{.Id.Hex}}" method="post" action={{urlfor "AUserController.Mod" ":id" .Id.Hex}}>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">修改:{{.Name}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">姓名</span>
+							<input class="form-control" name="name" value="{{.Name}}" />
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">用户名</span>
+							<input class="form-control" name="account" value="{{.Account}}" />
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">密码</span>
+							<input class="form-control" name="password" value="{{.Password}}" />
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">邮箱</span>
+							<input class="form-control" name="email" value="{{.Email}}" />
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">权限</span>
+							<input class="form-control" name="permission" value="{{.Permission}}" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary">修改</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+{{end}}

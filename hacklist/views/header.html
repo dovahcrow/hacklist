@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <title>SHAD</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="silic hasklist"/>
+  <meta name="author" content="42"/>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+  <link rel="shortcut icon" href="/static/img/favicon.ico"/>
+  <link rel="stylesheet" href="/static/css/custom.css"/>
+  {{range .moreStyles}}
+  <link rel="stylesheet" type="text/css" href="/static/css/{{.}}" />
+  {{end}}
+  {{range .moreScripts}}
+  <script type="text/javascript" charset="utf-8" src="/static/js/{{.}}"></script>
+  {{end}}
+  <!--[if lt IE 9]>
+  <script src="/static/js/html5shiv.js"></script>
+  <script src="/static/js/respond.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <header class="navbar navbar-inverse navbar-fixed-top top-bar" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">Silic Hacking Action Database</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="dropdown {{if eq .position "hacker"}}active{{end}}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              黑客名册 <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/hacker/local">国内黑客</a>
+              </li>
+              <li>
+                <a href="/hacker/foreign">国外黑客</a>
+              </li>
+            </ul>
+          </li>
+          <li {{if eq .position "attack"}}class="active"{{end}}>
+            <a href="/attack">攻击记录</a>
+          </li>
+          <li {{if eq .position "search"}}class="active"{{end}}>
+            <a href="/search">网站查询</a>
+          </li>
+          <li {{if eq .position "warn"}}class="active"{{end}}>
+            <a href="/warn">报警预测</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li {{if eq .position "about"}}class="active"{{end}}>
+            <a href="/about">关于</a>
+          </li>
+          <li>
+            <a href="/admin">管理</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12 sub-bar">
+      <div class="container">
+        <h1>{{.barTitle}}</h1>
+        <p>{{.barDesc}}</p>
+      </div>
+    </div>
+  </div>

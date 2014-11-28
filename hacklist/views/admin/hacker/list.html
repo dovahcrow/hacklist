@@ -1,0 +1,62 @@
+{{if .flash.notice}}
+<div class="alert alert-success">{{.flash.notice}}</div>
+{{end}}
+{{if .flash.error}}
+<div class="alert alert-danger">{{.flash.error}}</div>
+{{end}}
+<div class="panel panel-default">
+	{{range .hackers}}
+	<div id="mod_{{.Id.Hex}}" class="panel panel-warning panel-collapse collapse panel-mod">
+		<div class="panel-heading">修改记录 {{.Nick}}</div>
+		<div class="panel-body"></div>
+	</div>
+	{{end}}
+	<!-- Default panel contents -->
+	<div class="panel-heading">黑客列表</div>
+
+	<!-- Table -->
+	<table class="table">
+		<tr>
+			<td>昵称</td>
+			<td>性别</td>
+			<td>真实姓名</td>
+			<td>联系方式</td>
+			<td>编辑</td>
+		</tr>
+		{{range .hackers}}
+		<tr>
+			<td>{{.Nick}}</td>
+			<td>{{.Gender}}</td>
+			<td>{{.RealName}}</td>
+			<td>
+				{{range $key,$value := .Contact}}
+				<div>{{$key}}:{{$value}}</div>
+				{{end}}
+			</td>
+			<td>
+				<a data-toggle="collapse" data-target="#mod_{{.Id.Hex}}">修改</a>
+				<a href="{{urlfor "AHackerController.Del" ":id" .Id.Hex}}">删除</a>
+			</td>
+		</tr>
+		{{end}}
+	</table>
+</div>
+{{if gt .paginator.PageNums 1}}
+<ul class="pagination pagination-sm" style="float:right">
+	<li>
+		<a {{if .paginator.HasPrev}}href="{{.paginator.PageLinkFirst}}"{{else}}class="disabled"{{end}}>
+			<span class="glyphicon glyphicon-step-backward"></span>
+		</a>
+	</li>
+	{{range $index, $page := .paginator.Pages}}
+	<li{{if $.paginator.IsActive .}} class="active"{{end}}>
+		<a href="{{$.paginator.PageLink $page}}">{{$page}}</a>
+	</li>
+	{{end}}
+	<li>
+		<a {{if .paginator.HasNext}}href="{{.paginator.PageLinkLast}}"{{else}}class="disabled"{{end}}>
+			<span class="glyphicon glyphicon-step-forward"></span>
+		</a>
+	</li>
+</ul>
+{{end}}

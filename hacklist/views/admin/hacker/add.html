@@ -1,0 +1,43 @@
+{{if .flash.notice}}
+<div class="alert alert-success">{{.flash.notice}}</div>
+{{end}}
+{{if .flash.error}}
+<div class="alert alert-danger">{{.flash.error}}</div>
+{{end}}
+<div class="panel panel-default">
+	<div class="panel-heading">添加记录</div>
+	<div class="panel-body">
+		<form method="post">
+			<div class="input-group">
+				<span class="input-group-addon">昵称</span>
+				<input class="form-control" type="text" name="nick" value="{{.flash.nick}}"/>
+				<span class="input-group-addon">性别</span>
+				<span class="input-group-addon">
+					<input type="radio" name="gender" value="male" {{if .flash.gender}}{{if eq .flash.gender "male"}}checked="checked"{{end}}{{end}}/>
+				</span>
+				<input class="form-control" type="text" value="男" disabled/>
+				<span  class="input-group-addon">
+					<input type="radio" name="gender" value="female" {{if .flash.gender}}{{if eq .flash.gender "female"}}checked="checked"{{end}}{{end}}/>
+				</span>
+				<input class="form-control" type="text" value="女" disabled/>
+				<span  class="input-group-addon">
+					<input type="radio" name="gender" value="unknown" {{if .flash.gender}}{{if eq .flash.gender "unknown"}}checked="checked"{{end}}{{end}}/>
+				</span>
+				<input class="form-control" type="text" value="未知" disabled/>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon">真实姓名</span>
+				<input class="form-control" type="text" name="realname" value="{{.flash.realname}}"/>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon">身份证号</span>
+				<input class="form-control" type="text" name="ID" value="{{.flash.id}}"/>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon">生日</span>
+				<input class="form-control" type="date" name="birthday" value="{{.flash.birthday}}"/>
+			</div>
+			<button type="submit" class="btn btn-success">提交</button>
+		</form>
+	</div>
+</div>
